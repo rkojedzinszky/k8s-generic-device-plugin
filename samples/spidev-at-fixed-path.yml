@@ -1,0 +1,16 @@
+# In this configuration, both spi devices are mounted at the same location in the container
+---
+name: spidev
+sets:
+- id: spi0
+  spec:
+    devices:
+    - hostpath: /dev/spidev0.0
+      containerpath: /dev/spidev0.0
+      permissions: "rw"
+- id: spi1
+  spec:
+    devices:
+    - hostpath: /dev/spidev0.1
+      containerpath: /dev/spidev0.0
+      permissions: "rw"

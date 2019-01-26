@@ -1,0 +1,14 @@
+# Here, a more complex resource is advertised, which consists of an SPI device
+# and an exported GPIO directory
+---
+name: cc1101
+sets:
+- id: cc1101-0
+  spec:
+    devices:
+    - hostpath: /dev/spidev0.0
+      containerpath: /dev/spidev0.0
+      permissions: "rw"
+    mounts:
+    - hostpath: /sys/class/gpio/gpio2
+      containerpath: /gpio

@@ -1,0 +1,23 @@
+# In this configuration, spi devices are mounted at their original location.
+# Environment variables provide addition info for the container.
+---
+name: spidev
+sets:
+- id: spi0
+  spec:
+    devices:
+    - hostpath: /dev/spidev0.0
+      containerpath: /dev/spidev0.0
+      permissions: "rw"
+    envs:
+      SPI_BUS_NUM: 0
+      SPI_CS_NUM: 0
+- id: spi1
+  spec:
+    devices:
+    - hostpath: /dev/spidev0.1
+      containerpath: /dev/spidev0.1
+      permissions: "rw"
+    envs:
+      SPI_BUS_NUM: 0
+      SPI_CS_NUM: 1
