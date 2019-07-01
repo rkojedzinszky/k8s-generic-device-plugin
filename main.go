@@ -35,12 +35,12 @@ func main() {
 	resource, err := readconfig(flag.Arg(0))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
-		return
+		os.Exit(1)
 	}
 
 	if len(resource.Sets) == 0 {
 		log.Println("No resource set found.")
-		return
+		os.Exit(1)
 	}
 
 	log.Debugf("Generic device config: %v", resource)
@@ -64,7 +64,7 @@ L:
 		if restart {
 			if devicePlugin != nil {
 				devicePlugin.Stop()
-				time.Sleep(1E9)
+				time.Sleep(1 * time.Second)
 			}
 
 			devicePlugin = newGenericDevicePlugin(resource)
