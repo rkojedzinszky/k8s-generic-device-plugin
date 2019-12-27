@@ -11,7 +11,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	pluginapi "k8s.io/kubernetes/pkg/kubelet/apis/deviceplugin/v1beta1"
+	pluginapi "k8s.io/kubelet/pkg/apis/deviceplugin/v1beta1"
 )
 
 // serverSock		= pluginapi.DevicePluginPath + "spidev.sock"
@@ -170,15 +170,15 @@ func (m *genericDevicePlugin) Allocate(ctx context.Context, r *pluginapi.Allocat
 			return nil, fmt.Errorf("invalid allocation request: more than one device requested")
 		}
 
-		devId := contReq.DevicesIDs[0]
+		devID := contReq.DevicesIDs[0]
 
-		log.Debugf("Requested device ID: %v", devId)
+		log.Debugf("Requested device ID: %v", devID)
 
-		if !m.deviceExists(devId) {
-			return nil, fmt.Errorf("invalid allocation request: unknown device: %s", devId)
+		if !m.deviceExists(devID) {
+			return nil, fmt.Errorf("invalid allocation request: unknown device: %s", devID)
 		}
 
-		if spec, ok := m.devices[devId]; ok {
+		if spec, ok := m.devices[devID]; ok {
 			ContainerResponses = append(ContainerResponses, spec)
 		} else {
 			ContainerResponses = append(ContainerResponses, &pluginapi.ContainerAllocateResponse{})
