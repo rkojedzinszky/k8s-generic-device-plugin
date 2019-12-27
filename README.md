@@ -6,7 +6,7 @@
 
 It was forked from RDMA plugin and generalized.
 
-You can specify resources exactly as in [ContainerAllocateResponse](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/apis/deviceplugin/v1beta1/api.pb.go) objects.
+You can specify resources exactly as in [ContainerAllocateResponse](https://github.com/kubernetes/kubelet/blob/master/pkg/apis/deviceplugin/v1beta1/api.pb.go#L654) objects.
 
 It does no checking for the devices' real existence, just serves them to Kubernetes deviceplugin.
 
